@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -26,7 +27,7 @@ public class MainController {
 
     @RequestMapping("/")
     public String getBirthday(Model model) {
-        model.addAttribute("dates", dateRepository.findAll());
+        model.addAttribute("birthdates", dateRepository.findAll());
         return "index";
 
     }
@@ -34,19 +35,24 @@ public class MainController {
 
     @GetMapping("/add")
     public String bdayForm(Model model){
-        model.addAttribute("date", new Date());
+        model.addAttribute("birthdate", new Birthdate());
         return "bdayform";
     }
 
     @PostMapping("/process")
-    public String processInput(@Valid Date date, BindingResult result){
+    public String processInput(@Valid @ModelAttribute("birthdate") Birthdate birthdate, BindingResult result){
         if (result.hasErrors()){
             return "bdayform";
         }
 
-        dateRepository.save(date);
+
+        dateRepository.save(birthdate);
+        System.out.println(birthdate);
+
         return "redirect:/";
+
     }
+
 
 
 

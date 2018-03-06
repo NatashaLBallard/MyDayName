@@ -1,10 +1,9 @@
 package com.mydayname.demo;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -20,6 +19,12 @@ public class Date {
     @Size(min=6)
     private String birthdayInput;
 
+//    @Temporal(value=TemporalType.DATE)
+    @DateTimeFormat(pattern="MM-dd-yyyy")
+    private Date convertedBday;
+
+
+
     public String getBirthdayInput() {
         return birthdayInput;
     }
@@ -34,5 +39,14 @@ public class Date {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+
+    public Date getConvertedBday() {
+        return convertedBday;
+    }
+
+    public void setConvertedBday(Date convertedBday) {
+        this.convertedBday = convertedBday;
     }
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+
+<form action="#"
+      th:action="@{/process}"
+      th:object="${date}"
+      method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <b>Enter in birthday in MM/DD/YYYY format: </b>
+    <input type="text" th:field="*{birthdayInput}" />
+    <span th:if="${#fields.hasErrors('birthdayInput')}"
+          th:errors="*{birthdayInput}"></span><br/>
+
+
+    <input type="submit" value="Submit" />
+
+</form>
+
+
+</body>
+</html>

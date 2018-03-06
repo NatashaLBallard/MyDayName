@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<a href ="/add">Calculate Day Name</a>
+
+<table>
+    <tr>
+        <th>Birthday</th>
+    </tr>
+    <tr th:each="date:${dates}">
+        <td th:text="${date.birthdayInput}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

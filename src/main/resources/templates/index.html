@@ -12,9 +12,9 @@
     <tr>
         <th>Birthday</th>
     </tr>
-    <tr th:each="date:${dates}">
-        <td th:text="${date.birthdayInput}"></td>
-        <td th:text="${date.birthdate}"></td>
+    <tr th:each="birthdate:${birthdates}">
+        <td th:text="${birthdate.birthdayInput}"></td>
+        <!--<td th:text="${birthdate.birthdate}"></td>-->
     </tr>
 </table>
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -163,6 +164,58 @@ public class MainController {
 
         System.out.println(quote);
         return quote.getValue().getQuote();
+    }
+
+
+    @RequestMapping("/horoscope/today/Libra")
+    public @ResponseBody String showHoroscopeForToday(){
+
+        String testSunsign = "Libra";
+
+
+
+//        DateTimeFormatter longFormat = DateTimeFormatter.ofPattern("dd MM yyyy");
+//        LocalDate convertTodaysDate = LocalDate.parse(horo.get(), longFormat);
+//
+//
+//
+//
+//
+//        LocalDate rightNow = LocalDate.now();
+//        LocalDate localDate = LocalDate.of(rightNow.getYear(), rightNow.getMonth(), rightNow.getDayOfMonth());
+//
+//
+//        java.time.LocalDate date = localDate.get();
+//        rightNow.set(dayofWeek.name());
+
+//
+
+
+
+//        DateTimeFormatter longFormat = DateTimeFormatter.ofPattern("MMMM dd yyyy");
+//        LocalDate convertedBday = LocalDate.parse(birthdate.getBirthdayInput(), longFormat);
+//        LocalDate localDate = LocalDate.of(convertedBday.getYear(), convertedBday.getMonth(), convertedBday.getDayOfMonth());
+//        java.time.DayOfWeek dayofWeek = localDate.getDayOfWeek();
+//        Date dayOfTheWeek = new Date();
+//        SimpleDateFormat  simpleDateFormat = new SimpleDateFormat("EEEE");
+//        System.out.println(simpleDateFormat.format(dayOfTheWeek));
+
+
+
+//      LATEST TEST
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//        Date date = new Date();
+//
+//        System.out.println(dateFormat.format(date));
+
+        RestTemplate restTemplate = new RestTemplate();
+        HoroscopeDayValue quote = restTemplate.getForObject("http://horoscope-api.herokuapp.com/horoscope/today/"+ testSunsign,HoroscopeDayValue.class);
+
+
+
+        System.out.println(quote);
+        return quote.getHoroscope();
+
     }
 
 

@@ -16,9 +16,11 @@
         <td th:text="${birthdate.birthdayInput}"></td>
         <td th:text="${birthdate.gender}"></td>
         <td th:text="${birthdate.dayInTheWeek}"></td>
+        <td th:text="${birthdate.dayName}"></td>
+        <td><a th:href="@{/dayname/{id}(id=${birthdate.id})}">Day Name</a></td>
     </tr>
 
-    <!--<td><a th:href="@{/dayname/{id}(id=${birthdate.id})}">Day Name</a></td>-->
+
 </table>
 
 </body>

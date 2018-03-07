@@ -85,7 +85,6 @@ public class MainController {
         return "redirect:/";
     }
 
-;
 
     @RequestMapping("/dayname/{id}")
     public String findDayName(@PathVariable("id") long id, Model model) {
@@ -102,7 +101,9 @@ public class MainController {
             System.out.println("Adoja");
                 birthdate.setDayName("Adoja");
             }
-        System.out.println(birthdate.gender);
+
+        birthdateRepository.save(birthdate);
+        System.out.println(birthdate.dayName);
 
         return "redirect:/";
 

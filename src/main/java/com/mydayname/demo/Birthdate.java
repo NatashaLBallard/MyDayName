@@ -70,9 +70,11 @@ public class Birthdate extends Date{
     @Override
     public String toString() {
         return "Birthdate{" +
-//                "id='" + id + '\'' +
+                "id='" + id + '\'' +
                 "birthdayInput='" + birthdayInput + '\'' +
                 "gender='" + gender + '\'' +
+                "dayInTheWeek='" + dayInTheWeek + '\'' +
+                "dayName='" + dayName + '\'' +
                 '}';
     }
 

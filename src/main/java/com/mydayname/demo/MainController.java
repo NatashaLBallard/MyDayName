@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
@@ -69,7 +70,7 @@ public class MainController {
         LocalDate localDate = LocalDate.of(convertedBday.getYear(), convertedBday.getMonth(), convertedBday.getDayOfMonth());
         java.time.DayOfWeek dayofWeek = localDate.getDayOfWeek();
         birthdate.setDayInTheWeek(dayofWeek.name());
-       //System.out.println(dayofWeek);
+        //System.out.println(dayofWeek);
         birthdateRepository.save(birthdate);
 
 
@@ -97,75 +98,50 @@ public class MainController {
             if (birthdate.getDayInTheWeek().equalsIgnoreCase("MONDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
                 birthdate.setDayName("Kojo");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("MONDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("MONDAY") && birthdate.getGender().equalsIgnoreCase("Female")) {
                 birthdate.setDayName("Adoja");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            }
-
-            else if (birthdate.getDayInTheWeek().equalsIgnoreCase("TUESDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("TUESDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
                 birthdate.setDayName("Kwabena");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("TUESDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("TUESDAY") && birthdate.getGender().equalsIgnoreCase("Female")) {
                 birthdate.setDayName("Abena");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            }
-
-            else if (birthdate.getDayInTheWeek().equalsIgnoreCase("WEDNESDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("WEDNESDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
                 birthdate.setDayName("Kweku");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("WEDNESDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("WEDNESDAY") && birthdate.getGender().equalsIgnoreCase("Female")) {
                 birthdate.setDayName("Akua");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            }
-
-            else if (birthdate.getDayInTheWeek().equalsIgnoreCase("THURSDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("THURSDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
                 birthdate.setDayName("Yaw");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("THURSDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("THURSDAY") && birthdate.getGender().equalsIgnoreCase("Female")) {
                 birthdate.setDayName("Yaa");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            }
-
-            else if (birthdate.getDayInTheWeek().equalsIgnoreCase("FRIDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("FRIDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
                 birthdate.setDayName("Kofi");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("FRIDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("FRIDAY") && birthdate.getGender().equalsIgnoreCase("Female")) {
                 birthdate.setDayName("Afua");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            }
-
-            else if (birthdate.getDayInTheWeek().equalsIgnoreCase("SATURDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("SATURDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
                 birthdate.setDayName("Kwame");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("SATURDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("SATURDAY") && birthdate.getGender().equalsIgnoreCase("Female")) {
                 birthdate.setDayName("Ama");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            }
-
-            else if (birthdate.getDayInTheWeek().equalsIgnoreCase("SUNDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("SUNDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
                 birthdate.setDayName("Kwesi");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("SUNDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("SUNDAY") && birthdate.getGender().equalsIgnoreCase("Female")) {
                 birthdate.setDayName("Akosua");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
-            }
-
-            else {
+            } else {
                 System.out.println("You were never borrrrrrn!");
             }
         }
 
-
-//        //TUESDAY
-//        {
-//            if (birthdate.getDayInTheWeek().equalsIgnoreCase("TUESDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
-//                birthdate.setDayName("Kwabena");
-//                model.addAttribute("adddayname", birthdateRepository.findById(id));
-//            } else {
-//                birthdate.setDayName("Abena");
-//                model.addAttribute("adddayname", birthdateRepository.findById(id));
-//            }
-//        }
 
         birthdate.setDayInTheWeek(birthdate.dayInTheWeek);
         birthdate.setDayName(birthdate.dayName);
@@ -174,15 +150,27 @@ public class MainController {
 
         System.out.println(birthdate);
 
-        return  "redirect:/";
+        return "redirect:/";
 
-        }
-
-
+    }
 
 
+    @RequestMapping("/horoscope")
+    public @ResponseBody String showIndex(){
+        RestTemplate restTemplate = new RestTemplate();
+        Horoscope quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random",Horoscope.class);
 
-        }
+
+        System.out.println(quote);
+        return quote.getValue().getQuote();
+    }
+
+
+}
+
+
+
+
 
 
 

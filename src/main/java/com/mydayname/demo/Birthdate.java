@@ -34,9 +34,10 @@ public class Birthdate extends Date{
     @NotNull
     public String gender;
 
-
+    @Column
     public String dayName;
 
+    @Column
     public String dayInTheWeek;
 
 

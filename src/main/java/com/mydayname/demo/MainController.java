@@ -63,13 +63,13 @@ public class MainController {
 
 
         birthdateRepository.save(birthdate);
-        System.out.println(birthdate);
-        System.out.println(convertedBday);
+//        System.out.println(birthdate);
+//        System.out.println(convertedBday);
 
         LocalDate localDate = LocalDate.of(convertedBday.getYear(), convertedBday.getMonth(), convertedBday.getDayOfMonth());
         java.time.DayOfWeek dayofWeek = localDate.getDayOfWeek();
         birthdate.setDayInTheWeek(dayofWeek.name());
-        System.out.println(dayofWeek);
+       //System.out.println(dayofWeek);
         birthdateRepository.save(birthdate);
 
 
@@ -94,16 +94,22 @@ public class MainController {
 
 
         if (birthdate.getDayInTheWeek().equalsIgnoreCase("MONDAY")  && birthdate.getGender().equalsIgnoreCase("Male")) {
-            System.out.println("Kojo");
             birthdate.setDayName("Kojo");
+            model.addAttribute("adddayname", birthdateRepository.findById(id));
         }
             else {
-            System.out.println("Adoja");
                 birthdate.setDayName("Adoja");
+                model.addAttribute("adddayname", birthdateRepository.findById(id));
             }
 
+
+
+        birthdate.setDayInTheWeek(birthdate.dayInTheWeek);
+        birthdate.setDayName(birthdate.dayName);
         birthdateRepository.save(birthdate);
-        System.out.println(birthdate.dayName);
+
+
+        System.out.println(birthdate);
 
         return "redirect:/";
 

@@ -30,25 +30,13 @@ public class Birthdate extends Date{
     private String convertedBday;
 
 
-
-
-
-//
-//    private int year;
-//
-//    private int month;
-//
-//    private int day;
+    @NotNull
+    private String gender;
 
 
 
 
-//    public String DateTimeFormatter(){
-//
-//        DateTimeFormatter longFormat = DateTimeFormatter.ofPattern("MMMM dd yyyy");
-//        convertedBday = LocalDate.parse(getBirthdayInput(), longFormat);
-//        return convertedBday;
-//    }
+
 
 
     public String getBirthdayInput() {
@@ -94,4 +82,11 @@ public class Birthdate extends Date{
     }
 
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

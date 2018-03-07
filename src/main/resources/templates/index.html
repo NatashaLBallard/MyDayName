@@ -14,7 +14,9 @@
     </tr>
     <tr th:each="birthdate:${birthdates}">
         <td th:text="${birthdate.birthdayInput}"></td>
-        <td th:text="${birthdate.convertedBday}"></td>
+        <td th:text="${birthdate.gender}"></td>
+
+
     </tr>
 </table>
 

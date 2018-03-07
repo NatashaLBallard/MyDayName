@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
@@ -35,7 +36,7 @@ public class MainController {
 
 
     @GetMapping("/add")
-    public String bdayForm(Model model){
+    public String bdayForm(Model model) {
         model.addAttribute("birthdate", new Birthdate());
         return "bdayform";
     }
@@ -67,9 +68,8 @@ public class MainController {
         System.out.println(convertedBday);
 
 
-
 //        //Prints out today's day
-        LocalDate localDate = LocalDate.of(convertedBday.getYear(),convertedBday.getMonth(), convertedBday.getDayOfMonth()  );
+        LocalDate localDate = LocalDate.of(convertedBday.getYear(), convertedBday.getMonth(), convertedBday.getDayOfMonth());
         java.time.DayOfWeek dayofWeek = localDate.getDayOfWeek();
         System.out.println(dayofWeek);
 
@@ -79,16 +79,17 @@ public class MainController {
 //        System.out.println(simpleDateFormat.format(dayOfTheWeek));
 
 
+        if (dayofWeek == DayOfWeek.MONDAY) {
+//                if ((dayofWeek == DayOfWeek.MONDAY) || (gender == "Male")) {
+            System.out.println("Adjoa");
+        }
 
         return "redirect:/";
     }
 
+}
 
-
-
-
-
-    //    public static void main(String[] args) {
+        //    public static void main(String[] args) {
         //Get the current time
 //        LocalDateTime rightNow = LocalDateTime.now();
 //        //Date from the user
@@ -140,7 +141,8 @@ public class MainController {
 //            return birthday ;
 
 
-        }
+
+
 
 
 

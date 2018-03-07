@@ -92,17 +92,38 @@ public class MainController {
 
         Birthdate birthdate = birthdateRepository.findById(id);
 
-
-        if (birthdate.getDayInTheWeek().equalsIgnoreCase("MONDAY")  && birthdate.getGender().equalsIgnoreCase("Male")) {
-            birthdate.setDayName("Kojo");
-            model.addAttribute("adddayname", birthdateRepository.findById(id));
-        }
-            else {
+        //MONDAY
+        {
+            if (birthdate.getDayInTheWeek().equalsIgnoreCase("MONDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+                birthdate.setDayName("Kojo");
+                model.addAttribute("adddayname", birthdateRepository.findById(id));
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("MONDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
                 birthdate.setDayName("Adoja");
                 model.addAttribute("adddayname", birthdateRepository.findById(id));
             }
+            else if (birthdate.getDayInTheWeek().equalsIgnoreCase("TUESDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+                birthdate.setDayName("Kwabena");
+                model.addAttribute("adddayname", birthdateRepository.findById(id));
+            } else if (birthdate.getDayInTheWeek().equalsIgnoreCase("TUESDAY") && birthdate.getGender().equalsIgnoreCase("Female")){
+                birthdate.setDayName("Abena");
+                model.addAttribute("adddayname", birthdateRepository.findById(id));
+            }
+            else {
+                System.out.println("nada");
+            }
+        }
 
 
+//        //TUESDAY
+//        {
+//            if (birthdate.getDayInTheWeek().equalsIgnoreCase("TUESDAY") && birthdate.getGender().equalsIgnoreCase("Male")) {
+//                birthdate.setDayName("Kwabena");
+//                model.addAttribute("adddayname", birthdateRepository.findById(id));
+//            } else {
+//                birthdate.setDayName("Abena");
+//                model.addAttribute("adddayname", birthdateRepository.findById(id));
+//            }
+//        }
 
         birthdate.setDayInTheWeek(birthdate.dayInTheWeek);
         birthdate.setDayName(birthdate.dayName);
@@ -111,7 +132,7 @@ public class MainController {
 
         System.out.println(birthdate);
 
-        return "redirect:/";
+        return  "redirect:/";
 
         }
 

@@ -1,5 +1,6 @@
 package com.mydayname.demo;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 
 
 @Controller
@@ -33,21 +40,48 @@ public class MainController {
         return "bdayform";
     }
 
+//    @PostMapping("/process")
+//    public String processInput(@Valid @ModelAttribute("birthdate") Birthdate birthdate, BindingResult result){
+//        if (result.hasErrors()){
+//            return "bdayform";
+//        }
+//
+//
+//        dateRepository.save(birthdate);
+//        System.out.println(birthdate);
+//
+//        return "redirect:/";
+//
+//    }
+
     @PostMapping("/process")
-    public String processInput(@Valid @ModelAttribute("birthdate") Birthdate birthdate, BindingResult result){
-        if (result.hasErrors()){
+    public String processInput(@Valid @ModelAttribute("birthdate") Birthdate birthdate, BindingResult result) {
+        if (result.hasErrors()) {
             return "bdayform";
         }
 
-
+        DateTimeFormatter longFormat = DateTimeFormatter.ofPattern("MMMM dd yyyy");
+        LocalDate convertedBday = LocalDate.parse(birthdate.getBirthdayInput(), longFormat);
         dateRepository.save(birthdate);
         System.out.println(birthdate);
+        System.out.println(convertedBday);
+
+
+
+//        //Prints out today's day
+        LocalDate localDate = LocalDate.of(convertedBday.getYear(),convertedBday.getMonth(), convertedBday.getDayOfMonth()  );
+        java.time.DayOfWeek dayofWeek = localDate.getDayOfWeek();
+        System.out.println(dayofWeek);
+
+////        Prints out today's day
+//        Date dayOfTheWeek = new Date();
+//        SimpleDateFormat  simpleDateFormat = new SimpleDateFormat("EEEE");
+//        System.out.println(simpleDateFormat.format(dayOfTheWeek));
+
+
 
         return "redirect:/";
-
     }
-
-
 
 
 

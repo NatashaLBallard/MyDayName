@@ -6,12 +6,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Birthdate {
+public class Birthdate extends Date{
 
 
     @Id
@@ -23,10 +25,30 @@ public class Birthdate {
     private String birthdayInput;
 
     @Column
-    @Temporal(value=TemporalType.DATE)
+ //   @Temporal(value=TemporalType.DATE)
 //    @DateTimeFormat(pattern="MM-dd-yyyy")
-    private Date convertedBday;
+    private String convertedBday;
 
+
+
+
+
+//
+//    private int year;
+//
+//    private int month;
+//
+//    private int day;
+
+
+
+
+//    public String DateTimeFormatter(){
+//
+//        DateTimeFormatter longFormat = DateTimeFormatter.ofPattern("MMMM dd yyyy");
+//        convertedBday = LocalDate.parse(getBirthdayInput(), longFormat);
+//        return convertedBday;
+//    }
 
 
     public String getBirthdayInput() {
@@ -46,11 +68,11 @@ public class Birthdate {
     }
 
 
-    public Date getConvertedBday() {
+    public String getConvertedBday() {
         return convertedBday;
     }
 
-    public void setConvertedBday(Date convertedBday) {
+    public void setConvertedBday(String convertedBday) {
         this.convertedBday = convertedBday;
     }
 
@@ -61,4 +83,15 @@ public class Birthdate {
                 "birthdayInput='" + birthdayInput + '\'' +
                 '}';
     }
+
+
+    public String getDateTimeFormatter() {
+
+//        DateTimeFormatter longFormat = DateTimeFormatter.ofPattern("MMMM dd yyyy");
+//        convertedBday = LocalDate.parse(getBirthdayInput(), longFormat);
+
+        return convertedBday.toString();
+    }
+
+
 }

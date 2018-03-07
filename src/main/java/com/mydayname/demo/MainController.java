@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
@@ -24,12 +21,12 @@ import java.util.Date;
 public class MainController {
 
     @Autowired
-    BirthdateRepository dateRepository;
+    BirthdateRepository birthdateRepository;
 
 
     @RequestMapping("/")
     public String getBirthday(Model model) {
-        model.addAttribute("birthdates", dateRepository.findAll());
+        model.addAttribute("birthdates", birthdateRepository.findAll());
         return "index";
 
     }
@@ -63,31 +60,100 @@ public class MainController {
 
         DateTimeFormatter longFormat = DateTimeFormatter.ofPattern("MMMM dd yyyy");
         LocalDate convertedBday = LocalDate.parse(birthdate.getBirthdayInput(), longFormat);
-        dateRepository.save(birthdate);
+
+
+        birthdateRepository.save(birthdate);
         System.out.println(birthdate);
         System.out.println(convertedBday);
 
-
-//        //Prints out today's day
         LocalDate localDate = LocalDate.of(convertedBday.getYear(), convertedBday.getMonth(), convertedBday.getDayOfMonth());
         java.time.DayOfWeek dayofWeek = localDate.getDayOfWeek();
+        birthdate.setDayInTheWeek(dayofWeek.name());
         System.out.println(dayofWeek);
+        birthdateRepository.save(birthdate);
+
+
+//        Birthdate textDayOfWeek = birthdateRepository.findById(id);
+
+        //        birthdateRepository.save(dayofWeek);
 
 ////        Prints out today's day
 //        Date dayOfTheWeek = new Date();
 //        SimpleDateFormat  simpleDateFormat = new SimpleDateFormat("EEEE");
 //        System.out.println(simpleDateFormat.format(dayOfTheWeek));
 
-
-        if (dayofWeek == DayOfWeek.MONDAY) {
-//                if ((dayofWeek == DayOfWeek.MONDAY) || (gender == "Male")) {
-            System.out.println("Adjoa");
-        }
-
         return "redirect:/";
     }
 
-}
+;
+
+    @RequestMapping("/dayname/{id}")
+    public String findDayName(@PathVariable("id") long id, Model model) {
+        model.addAttribute("birthdate", birthdateRepository.findById(id));
+
+        Birthdate birthdate = birthdateRepository.findById(id);
+
+
+        if (birthdate.getDayInTheWeek().equalsIgnoreCase("MONDAY")  && birthdate.getGender().equalsIgnoreCase("Male")) {
+            System.out.println("Kojo");
+            birthdate.setDayName("Kojo");
+        }
+            else {
+            System.out.println("Adoja");
+                birthdate.setDayName("Adoja");
+            }
+        System.out.println(birthdate.gender);
+
+        return "redirect:/";
+
+        }
+
+
+
+
+
+        }
+
+
+
+
+//    @RequestMapping("/gendermale/{id}")
+//    public String findDayName(@PathVariable("id") long id,Model model){
+//        model.addAttribute("birthdate",birthdateRepository.findById(id));
+//
+//        Birthdate birthdate=birthdateRepository.findById(id);
+//
+//        birthdate.setGender("Male");
+//
+//        model.addAttribute("anItem", birthdateRepository.findById(id));
+//        birthdateRepository.save(birthdate);
+//        birthdateRepository.save(gender);
+//
+//
+//
+//        if (dayofWeek == DayOfWeek.MONDAY ) {
+//            System.out.println("Kojo");
+//
+//        }
+//
+//        return "redirect:/";
+//    }
+
+
+
+
+//
+//        if (dayofWeek == DayOfWeek.MONDAY && birthdate.getGender == "Male") {
+//        System.out.println("Kojo");
+//        model.addAttribute()
+//
+//    }
+//        else {
+//        System.out.println("Adoja");
+
+
+
+
 
         //    public static void main(String[] args) {
         //Get the current time

@@ -30,12 +30,14 @@ public class Birthdate extends Date{
     private String convertedBday;
 
 
+    @Column
     @NotNull
-    private String gender;
+    public String gender;
 
 
+    public String dayName;
 
-
+    public String dayInTheWeek;
 
 
 
@@ -68,9 +70,12 @@ public class Birthdate extends Date{
     @Override
     public String toString() {
         return "Birthdate{" +
+//                "id='" + id + '\'' +
                 "birthdayInput='" + birthdayInput + '\'' +
+                "gender='" + gender + '\'' +
                 '}';
     }
+
 
 
     public String getDateTimeFormatter() {
@@ -88,5 +93,21 @@ public class Birthdate extends Date{
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getDayName() {
+        return dayName;
+    }
+
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
+    }
+
+    public String getDayInTheWeek() {
+        return dayInTheWeek;
+    }
+
+    public void setDayInTheWeek(String dayInTheWeek) {
+        this.dayInTheWeek = dayInTheWeek;
     }
 }
